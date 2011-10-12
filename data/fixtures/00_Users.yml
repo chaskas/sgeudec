@@ -1,0 +1,29 @@
+## YAML Template.
+---
+sfGuardUser:
+  User_admin:
+    first_name:     Rodrigo
+    last_name:      Campos
+    email_address:  mr.chaskas@gmail.com
+    username:       admin
+    password:       chaskon
+    is_super_admin: true
+    Groups:         [Group_admin]
+  User_test:
+    first_name:     Rodrigo
+    last_name:      Campos
+    email_address:  rodcampos@udec.cl
+    username:       rodcampos
+    password:       rodcampos
+    is_super_admin: false
+
+sfGuardGroup:
+  Group_admin:
+    name:           admin
+    description:    Administrator group
+    Permissions:    [Permission_admin]
+
+sfGuardPermission:
+  Permission_admin:
+    name:           admin
+    description:    Administrator permission

@@ -1,0 +1,26 @@
+# config/doctrine/schema.yml
+---
+Tarifas:
+  columns:
+    nombre:     { type: text, notnull: true }
+
+
+Cargos:
+  columns:
+    nombre:     { type: text, notnull: true }
+    valor:      { type: float, notnull: true }
+    unidad:     { type: text, notnull: true }
+    
+Recintos:
+  columns:
+    nombre:     { type: text, notnull: true }
+    tarifa:     { type: text, notnull: true }
+
+PtoMonit:
+  columns:
+    nombre:     { type: text, notnull: true }
+    potenciaI:  { type: float, notnull: true }
+
+Unidades:
+  columns:
+    unidad:     { type: text, notnull: true }

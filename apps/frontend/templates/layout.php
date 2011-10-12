@@ -47,12 +47,13 @@
               </ul>
             </li>
             <li>
-              <a href="<?php echo url_for('tarifa/index'); ?>" class="nav-top-item <?php if($sf_context->getModuleName()=='a') echo "current"; ?>"> <!-- Add the class "no-submenu" to menu items with no sub menu -->
+              <a href="#" class="nav-top-item <?php if($sf_context->getModuleName()=='tarifa' || $sf_context->getModuleName()=='unidades' || $sf_context->getModuleName()=='cargos') echo "current"; ?>"> <!-- Add the class "no-submenu" to menu items with no sub menu -->
 		Sistema Tarifario
               </a>
               <ul>
-                <li><a <?php if($sf_context->getActionName()=='index' && $sf_context->getModuleName()=='tarifa') echo "class='current'"; ?> href="<?php echo url_for('tarifa/index'); ?>">Sistema Tarif&aacute;rio</a></li>
-                <li><a <?php if($sf_context->getActionName()=='new' && $sf_context->getModuleName()=='tarifa') echo "class='current'"; ?> href="<?php echo url_for('tarifa/new'); ?>">Crear nueva tarifa</a></li>
+                <li><a <?php if($sf_context->getActionName()=='index' && $sf_context->getModuleName()=='tarifa') echo "class='current'"; ?> href="<?php echo url_for('tarifa/index'); ?>">Tarifas</a></li>
+                <li><a <?php if($sf_context->getActionName()=='index' && $sf_context->getModuleName()=='cargos') echo "class='current'"; ?> href="<?php echo url_for('cargos/index'); ?>">Cargos</a></li>
+                <li><a <?php if($sf_context->getActionName()=='index' && $sf_context->getModuleName()=='unidades') echo "class='current'"; ?> href="<?php echo url_for('unidades/index'); ?>">Unidades</a></li>
               </ul>
             </li>
             <li>

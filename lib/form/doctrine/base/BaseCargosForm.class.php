@@ -15,17 +15,19 @@ abstract class BaseCargosForm extends BaseFormDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'id'     => new sfWidgetFormInputHidden(),
-      'nombre' => new sfWidgetFormInputText(),
-      'valor'  => new sfWidgetFormInputText(),
-      'unidad' => new sfWidgetFormInputText(),
+      'id'          => new sfWidgetFormInputHidden(),
+      'nombre'      => new sfWidgetFormInputText(),
+      'valor'       => new sfWidgetFormInputText(),
+      'tarifa_id'   => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Tarifas'), 'add_empty' => false)),
+      'unidades_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Unidades'), 'add_empty' => false)),
     ));
 
     $this->setValidators(array(
-      'id'     => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'nombre' => new sfValidatorPass(),
-      'valor'  => new sfValidatorNumber(),
-      'unidad' => new sfValidatorPass(),
+      'id'          => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
+      'nombre'      => new sfValidatorPass(),
+      'valor'       => new sfValidatorNumber(),
+      'tarifa_id'   => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Tarifas'))),
+      'unidades_id' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Unidades'))),
     ));
 
     $this->widgetSchema->setNameFormat('cargos[%s]');

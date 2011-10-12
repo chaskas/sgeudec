@@ -1,4 +1,4 @@
-CREATE TABLE cargos (id BIGINT AUTO_INCREMENT, nombre text NOT NULL, valor FLOAT(18, 2) NOT NULL, unidad text NOT NULL, PRIMARY KEY(id)) ENGINE = INNODB;
+CREATE TABLE cargos (id BIGINT AUTO_INCREMENT, nombre text NOT NULL, valor FLOAT(18, 4) NOT NULL, tarifa_id bigint(20) NOT NULL, unidades_id bigint(20) NOT NULL, INDEX tarifa_id_idx (tarifa_id), INDEX unidades_id_idx (unidades_id), PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE pto_monit (id BIGINT AUTO_INCREMENT, nombre text NOT NULL, potenciai FLOAT(18, 2) NOT NULL, PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE recintos (id BIGINT AUTO_INCREMENT, nombre text NOT NULL, tarifa text NOT NULL, PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE tarifas (id BIGINT AUTO_INCREMENT, nombre text NOT NULL, PRIMARY KEY(id)) ENGINE = INNODB;
@@ -11,6 +11,8 @@ CREATE TABLE sf_guard_remember_key (id BIGINT AUTO_INCREMENT, user_id BIGINT, re
 CREATE TABLE sf_guard_user (id BIGINT AUTO_INCREMENT, first_name VARCHAR(255), last_name VARCHAR(255), email_address VARCHAR(255) NOT NULL UNIQUE, username VARCHAR(128) NOT NULL UNIQUE, algorithm VARCHAR(128) DEFAULT 'sha1' NOT NULL, salt VARCHAR(128), password VARCHAR(128), is_active TINYINT(1) DEFAULT '1', is_super_admin TINYINT(1) DEFAULT '0', last_login DATETIME, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, INDEX is_active_idx_idx (is_active), PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE sf_guard_user_group (user_id BIGINT, group_id BIGINT, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, PRIMARY KEY(user_id, group_id)) ENGINE = INNODB;
 CREATE TABLE sf_guard_user_permission (user_id BIGINT, permission_id BIGINT, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, PRIMARY KEY(user_id, permission_id)) ENGINE = INNODB;
+ALTER TABLE cargos ADD CONSTRAINT cargos_unidades_id_unidades_id FOREIGN KEY (unidades_id) REFERENCES unidades(id) ON DELETE CASCADE;
+ALTER TABLE cargos ADD CONSTRAINT cargos_tarifa_id_tarifas_id FOREIGN KEY (tarifa_id) REFERENCES tarifas(id) ON DELETE CASCADE;
 ALTER TABLE sf_guard_forgot_password ADD CONSTRAINT sf_guard_forgot_password_user_id_sf_guard_user_id FOREIGN KEY (user_id) REFERENCES sf_guard_user(id) ON DELETE CASCADE;
 ALTER TABLE sf_guard_group_permission ADD CONSTRAINT sf_guard_group_permission_permission_id_sf_guard_permission_id FOREIGN KEY (permission_id) REFERENCES sf_guard_permission(id) ON DELETE CASCADE;
 ALTER TABLE sf_guard_group_permission ADD CONSTRAINT sf_guard_group_permission_group_id_sf_guard_group_id FOREIGN KEY (group_id) REFERENCES sf_guard_group(id) ON DELETE CASCADE;

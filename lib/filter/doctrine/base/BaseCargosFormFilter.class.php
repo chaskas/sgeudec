@@ -13,15 +13,17 @@ abstract class BaseCargosFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'nombre' => new sfWidgetFormFilterInput(array('with_empty' => false)),
-      'valor'  => new sfWidgetFormFilterInput(array('with_empty' => false)),
-      'unidad' => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'nombre'      => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'valor'       => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'tarifa_id'   => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Tarifas'), 'add_empty' => true)),
+      'unidades_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Unidades'), 'add_empty' => true)),
     ));
 
     $this->setValidators(array(
-      'nombre' => new sfValidatorPass(array('required' => false)),
-      'valor'  => new sfValidatorSchemaFilter('text', new sfValidatorNumber(array('required' => false))),
-      'unidad' => new sfValidatorPass(array('required' => false)),
+      'nombre'      => new sfValidatorPass(array('required' => false)),
+      'valor'       => new sfValidatorSchemaFilter('text', new sfValidatorNumber(array('required' => false))),
+      'tarifa_id'   => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Tarifas'), 'column' => 'id')),
+      'unidades_id' => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Unidades'), 'column' => 'id')),
     ));
 
     $this->widgetSchema->setNameFormat('cargos_filters[%s]');
@@ -41,10 +43,11 @@ abstract class BaseCargosFormFilter extends BaseFormFilterDoctrine
   public function getFields()
   {
     return array(
-      'id'     => 'Number',
-      'nombre' => 'Text',
-      'valor'  => 'Number',
-      'unidad' => 'Text',
+      'id'          => 'Number',
+      'nombre'      => 'Text',
+      'valor'       => 'Number',
+      'tarifa_id'   => 'ForeignKey',
+      'unidades_id' => 'ForeignKey',
     );
   }
 }

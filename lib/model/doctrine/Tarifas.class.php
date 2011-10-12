@@ -12,4 +12,8 @@
  */
 class Tarifas extends BaseTarifas
 {
+  public function __toString()
+  {
+   return $this->getNombre();
+  }
 }

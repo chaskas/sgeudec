@@ -1,0 +1,12 @@
+Unidades:
+  uni1:
+    unidad:         $
+  uni2:
+    unidad:         kW
+  uni3:
+    unidad:         kWh
+  uni4:
+    unidad:         $/kW
+  uni5:
+    unidad:         $/kWh
+

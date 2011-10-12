@@ -7,9 +7,13 @@ Tarifas:
 
 Cargos:
   columns:
-    nombre:     { type: text, notnull: true }
-    valor:      { type: float, notnull: true }
-    unidad:     { type: text, notnull: true }
+    nombre:       { type: text, notnull: true }
+    valor:        { type: float, notnull: true, scale: 4}
+    tarifa_id:    { type: bigint(20), notnull: true }
+    unidades_id:  { type: bigint(20), notnull: true }
+  relations:
+    Tarifas:      { onDelete: CASCADE, local: tarifa_id, foreign: id, foreignAlias: Cargos }
+    Unidades:     { onDelete: CASCADE, local: unidades_id, foreign: id, foreignAlias: Unidades }
     
 Recintos:
   columns:
@@ -24,3 +28,4 @@ PtoMonit:
 Unidades:
   columns:
     unidad:     { type: text, notnull: true }
+

@@ -12,4 +12,8 @@
  */
 class Unidades extends BaseUnidades
 {
+  public function __toString()
+  {
+   return $this->getUnidad();
+  }
 }

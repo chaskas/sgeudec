@@ -1,0 +1,25 @@
+Tarifas:
+  tar1:
+    nombre:         B.T.1
+  tar2:
+    nombre:         B.T.2
+  tar3:
+    nombre:         B.T.3
+  tar4:
+    nombre:         B.T.4.1
+  tar5:
+    nombre:         B.T.4.2
+  tar6:
+    nombre:         B.T.4.3
+  tar7:
+    nombre:         A.T.2
+  tar8:
+    nombre:         A.T.3
+  tar9:
+    nombre:         A.T.4.1
+  tar10:
+    nombre:         A.T.4.2
+  tar11:
+    nombre:         A.T.4.3
+  tar12:
+    nombre:         T.F.R

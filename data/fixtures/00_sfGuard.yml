@@ -1,7 +1,5 @@
-## YAML Template.
----
 sfGuardUser:
-  User_admin:
+  User_admin1:
     first_name:     Rodrigo
     last_name:      Campos
     email_address:  mr.chaskas@gmail.com
@@ -9,13 +7,22 @@ sfGuardUser:
     password:       chaskon
     is_super_admin: true
     Groups:         [Group_admin]
-  User_test:
+  User_admin2:
     first_name:     Rodrigo
     last_name:      Campos
     email_address:  rodcampos@udec.cl
     username:       rodcampos
     password:       rodcampos
-    is_super_admin: false
+    is_super_admin: true
+    Groups:         [Group_admin]
+  User_admin2:
+    first_name:     Luis
+    last_name:      Garcia
+    email_address:  luigarci@udec.cl
+    username:       luigarci
+    password:       luigarci
+    is_super_admin: true
+    Groups:         [Group_admin]
 
 sfGuardGroup:
   Group_admin:

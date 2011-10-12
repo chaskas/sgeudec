@@ -1,0 +1,49 @@
+Cargos:
+  # BT1
+  car1:
+    nombre:         Cargo fijo
+    valor:          902.02
+    Unidades:       uni1
+    Tarifas:        tar1
+  car2:
+    nombre:         Cargo por uso del sistema troncal
+    valor:          1.424
+    Unidades:       uni5
+    Tarifas:        tar1
+  car3:
+    nombre:         Cargo por energia base
+    valor:          112.987
+    Unidades:       uni5
+    Tarifas:        tar1
+  car4:
+    nombre:         Cargo por energia adicional de invierno
+    valor:          150.184
+    Unidades:       uni5
+    Tarifas:        tar1
+  #BT2
+  car5:
+    nombre:         Cargo fijo
+    valor:          902.02
+    Unidades:       uni1
+    Tarifas:        tar2
+  car6:
+    nombre:         Cargo por uso del sistema troncal
+    valor:          1.424
+    Unidades:       uni5
+    Tarifas:        tar2
+  car7:
+    nombre:         Cargo por energia base
+    valor:          75.791
+    Unidades:       uni5
+    Tarifas:        tar2
+  car8:
+    nombre:         Cargo por potencia contratada presente en punta
+    valor:          10632.50
+    Unidades:       uni4
+    Tarifas:        tar2
+  car9:
+    nombre:         Cargo por potencia contratada parcialmente en punta
+    valor:          8174.70
+    Unidades:       uni4
+    Tarifas:        tar2
+

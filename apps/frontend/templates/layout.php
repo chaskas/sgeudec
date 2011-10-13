@@ -29,12 +29,12 @@
           <ul id="main-nav">  <!-- Accordion Menu -->
 
             <li>
-              <a href="<?php echo url_for('tarifa/index'); ?>" class="nav-top-item <?php if($sf_context->getModuleName()=='tarifa') echo "current"; ?>"> <!-- Add the class "no-submenu" to menu items with no sub menu -->
+              <a href="<?php echo url_for('tarifa/index'); ?>" class="nav-top-item <?php if($sf_context->getModuleName()=='tarifaxxx') echo "current"; ?>"> <!-- Add the class "no-submenu" to menu items with no sub menu -->
 		Gr&aacute;ficos
               </a>
               <ul>
-                <li><a <?php if($sf_context->getActionName()=='index' && $sf_context->getModuleName()=='tarifa') echo "class='current'"; ?> href="<?php echo url_for('tarifa/index'); ?>">Gr&aacute;ficos</a></li>
-                <li><a <?php if($sf_context->getActionName()=='new' && $sf_context->getModuleName()=='tarifa') echo "class='current'"; ?> href="<?php echo url_for('tarifa/new'); ?>">Crear nueva tarifa</a></li>
+                <li><a <?php if($sf_context->getActionName()=='indexxxx' && $sf_context->getModuleName()=='tarifaxxx') echo "class='current'"; ?> href="<?php echo url_for('tarifa/index'); ?>">Gr&aacute;ficos</a></li>
+                <li><a <?php if($sf_context->getActionName()=='newxxx' && $sf_context->getModuleName()=='tarifaxxx') echo "class='current'"; ?> href="<?php echo url_for('tarifa/new'); ?>">Crear nueva tarifa</a></li>
               </ul>
             </li>
             <li>
@@ -47,13 +47,23 @@
               </ul>
             </li>
             <li>
+              <a href="#" class="nav-top-item <?php if($sf_context->getModuleName()=='sensores' || $sf_context->getModuleName()=='ptomonit' || $sf_context->getModuleName()=='recintos') echo "current"; ?>"> <!-- Add the class "no-submenu" to menu items with no sub menu -->
+		&Aacute;reas de Evaluaci&oacute;n
+              </a>
+              <ul>
+                <li><a <?php if($sf_context->getModuleName()=='recintos') echo "class='current'"; ?> href="<?php echo url_for('recintos/index'); ?>">Recintos</a></li>
+                <li><a <?php if($sf_context->getModuleName()=='ptomonit') echo "class='current'"; ?> href="<?php echo url_for('ptomonit/index'); ?>">Puntos de Monitoreo</a></li>
+                <li><a <?php if($sf_context->getModuleName()=='sensores') echo "class='current'"; ?> href="<?php echo url_for('sensores/index'); ?>">Sensores</a></li>
+              </ul>
+            </li>
+            <li>
               <a href="#" class="nav-top-item <?php if($sf_context->getModuleName()=='tarifa' || $sf_context->getModuleName()=='unidades' || $sf_context->getModuleName()=='cargos') echo "current"; ?>"> <!-- Add the class "no-submenu" to menu items with no sub menu -->
 		Sistema Tarifario
               </a>
               <ul>
-                <li><a <?php if($sf_context->getActionName()=='index' && $sf_context->getModuleName()=='tarifa') echo "class='current'"; ?> href="<?php echo url_for('tarifa/index'); ?>">Tarifas</a></li>
-                <li><a <?php if($sf_context->getActionName()=='index' && $sf_context->getModuleName()=='cargos') echo "class='current'"; ?> href="<?php echo url_for('cargos/index'); ?>">Cargos</a></li>
-                <li><a <?php if($sf_context->getActionName()=='index' && $sf_context->getModuleName()=='unidades') echo "class='current'"; ?> href="<?php echo url_for('unidades/index'); ?>">Unidades</a></li>
+                <li><a <?php if($sf_context->getModuleName()=='tarifa') echo "class='current'"; ?> href="<?php echo url_for('tarifa/index'); ?>">Tarifas</a></li>
+                <li><a <?php if($sf_context->getModuleName()=='cargos') echo "class='current'"; ?> href="<?php echo url_for('cargos/index'); ?>">Cargos</a></li>
+                <li><a <?php if($sf_context->getModuleName()=='unidades') echo "class='current'"; ?> href="<?php echo url_for('unidades/index'); ?>">Unidades</a></li>
               </ul>
             </li>
             <li>

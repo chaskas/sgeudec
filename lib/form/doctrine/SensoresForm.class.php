@@ -1,14 +1,14 @@
 <?php
 
 /**
- * PtoMonit form.
+ * Sensores form.
  *
  * @package    sgeudec
  * @subpackage form
  * @author     Your name here
  * @version    SVN: $Id: sfDoctrineFormTemplate.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
-class PtoMonitForm extends BasePtoMonitForm
+class SensoresForm extends BaseSensoresForm
 {
   public function configure()
   {

@@ -1,6 +1,7 @@
 CREATE TABLE cargos (id BIGINT AUTO_INCREMENT, nombre text NOT NULL, valor FLOAT(18, 4) NOT NULL, tarifa_id bigint(20) NOT NULL, unidades_id bigint(20) NOT NULL, INDEX tarifa_id_idx (tarifa_id), INDEX unidades_id_idx (unidades_id), PRIMARY KEY(id)) ENGINE = INNODB;
-CREATE TABLE pto_monit (id BIGINT AUTO_INCREMENT, nombre text NOT NULL, potenciai FLOAT(18, 2) NOT NULL, PRIMARY KEY(id)) ENGINE = INNODB;
-CREATE TABLE recintos (id BIGINT AUTO_INCREMENT, nombre text NOT NULL, tarifa text NOT NULL, PRIMARY KEY(id)) ENGINE = INNODB;
+CREATE TABLE ptomonit (id BIGINT AUTO_INCREMENT, nombre text NOT NULL, ubicacion text NOT NULL, potenciai FLOAT(18, 2) NOT NULL, mapa text, recinto_id bigint(20) NOT NULL, INDEX recinto_id_idx (recinto_id), PRIMARY KEY(id)) ENGINE = INNODB;
+CREATE TABLE recintos (id BIGINT AUTO_INCREMENT, nombre text NOT NULL, tarifa_id bigint(20) NOT NULL, mapa text, INDEX tarifa_id_idx (tarifa_id), PRIMARY KEY(id)) ENGINE = INNODB;
+CREATE TABLE sensores (id BIGINT AUTO_INCREMENT, identificador text NOT NULL, ubicacion text NOT NULL, ptomonit_id bigint(20) NOT NULL, INDEX ptomonit_id_idx (ptomonit_id), PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE tarifas (id BIGINT AUTO_INCREMENT, nombre text NOT NULL, PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE unidades (id BIGINT AUTO_INCREMENT, unidad text NOT NULL, PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE sf_guard_forgot_password (id BIGINT AUTO_INCREMENT, user_id BIGINT NOT NULL, unique_key VARCHAR(255), expires_at DATETIME NOT NULL, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, INDEX user_id_idx (user_id), PRIMARY KEY(id)) ENGINE = INNODB;
@@ -13,6 +14,9 @@ CREATE TABLE sf_guard_user_group (user_id BIGINT, group_id BIGINT, created_at DA
 CREATE TABLE sf_guard_user_permission (user_id BIGINT, permission_id BIGINT, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, PRIMARY KEY(user_id, permission_id)) ENGINE = INNODB;
 ALTER TABLE cargos ADD CONSTRAINT cargos_unidades_id_unidades_id FOREIGN KEY (unidades_id) REFERENCES unidades(id) ON DELETE CASCADE;
 ALTER TABLE cargos ADD CONSTRAINT cargos_tarifa_id_tarifas_id FOREIGN KEY (tarifa_id) REFERENCES tarifas(id) ON DELETE CASCADE;
+ALTER TABLE ptomonit ADD CONSTRAINT ptomonit_recinto_id_recintos_id FOREIGN KEY (recinto_id) REFERENCES recintos(id) ON DELETE CASCADE;
+ALTER TABLE recintos ADD CONSTRAINT recintos_tarifa_id_tarifas_id FOREIGN KEY (tarifa_id) REFERENCES tarifas(id) ON DELETE CASCADE;
+ALTER TABLE sensores ADD CONSTRAINT sensores_ptomonit_id_ptomonit_id FOREIGN KEY (ptomonit_id) REFERENCES ptomonit(id) ON DELETE CASCADE;
 ALTER TABLE sf_guard_forgot_password ADD CONSTRAINT sf_guard_forgot_password_user_id_sf_guard_user_id FOREIGN KEY (user_id) REFERENCES sf_guard_user(id) ON DELETE CASCADE;
 ALTER TABLE sf_guard_group_permission ADD CONSTRAINT sf_guard_group_permission_permission_id_sf_guard_permission_id FOREIGN KEY (permission_id) REFERENCES sf_guard_permission(id) ON DELETE CASCADE;
 ALTER TABLE sf_guard_group_permission ADD CONSTRAINT sf_guard_group_permission_group_id_sf_guard_group_id FOREIGN KEY (group_id) REFERENCES sf_guard_group(id) ON DELETE CASCADE;

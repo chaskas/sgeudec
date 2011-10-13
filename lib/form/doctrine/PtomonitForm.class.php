@@ -1,17 +1,21 @@
 <?php
 
 /**
- * Recintos form.
+ * Ptomonit form.
  *
  * @package    sgeudec
  * @subpackage form
  * @author     Your name here
  * @version    SVN: $Id: sfDoctrineFormTemplate.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
-class RecintosForm extends BaseRecintosForm
+class PtomonitForm extends BasePtomonitForm
 {
   public function configure()
   {
+    $this->widgetSchema->setLabels(array(
+        'potenciaI' => 'Potencia Instalada (kW)'
+    ));
+
     $this->widgetSchema['mapa'] = new sfWidgetFormInputFileEditable(array(
                 'label' => 'Mapa',
                 'file_src' => '/uploads/mapas/s_' . $this->getObject()->getMapa(),

@@ -12,18 +12,34 @@ Cargos:
     tarifa_id:    { type: bigint(20), notnull: true }
     unidades_id:  { type: bigint(20), notnull: true }
   relations:
-    Tarifas:      { onDelete: CASCADE, local: tarifa_id, foreign: id, foreignAlias: Cargos }
+    Tarifas:      { onDelete: CASCADE, local: tarifa_id, foreign: id, foreignAlias: Tarifas }
     Unidades:     { onDelete: CASCADE, local: unidades_id, foreign: id, foreignAlias: Unidades }
     
 Recintos:
   columns:
-    nombre:     { type: text, notnull: true }
-    tarifa:     { type: text, notnull: true }
+    nombre:       { type: text, notnull: true }
+    tarifa_id:    { type: bigint(20), notnull: true }
+    mapa:         { type: text, notnull: false }
+  relations:
+    Tarifas:      { onDelete: CASCADE, local: tarifa_id, foreign: id, foreignAlias: Tarifas }
 
-PtoMonit:
+Ptomonit:
   columns:
     nombre:     { type: text, notnull: true }
+    ubicacion:  { type: text, notnull: true }
     potenciaI:  { type: float, notnull: true }
+    mapa:       { type: text, notnull: false }
+    recinto_id: { type: bigint(20), notnull: true }
+  relations:
+    Recintos:   { onDelete: CASCADE, local: recinto_id, foreign: id, foreignAlias: Recintos }
+
+Sensores:
+  columns:
+    identificador:      { type: text, notnull: true }
+    ubicacion:          { type: text, notnull: true }
+    ptomonit_id:        { type: bigint(20), notnull: true }
+  relations:
+    Ptomonit:           { onDelete: CASCADE, local: ptomonit_id, foreign: id, foreignAlias: Ptomonits }
 
 Unidades:
   columns:

@@ -1,12 +1,12 @@
-<div class="content-box"><!-- Start Content Box -->
+<div class="content-box">
 
   <div class="content-box-header">
 
-    <h3 style="cursor: s-resize; ">Nueva Tarifa</h3>
+    <h3 style="cursor: s-resize; ">Nuevo recinto</h3>
 
     <div class="clear"></div>
 
-  </div> <!-- End .content-box-header -->
+  </div>
 
   <div class="content-box-content">
 
@@ -14,8 +14,8 @@
 
     <?php include_partial('form', array('form' => $form)) ?>
 
-    </div> <!-- End #tab1 -->
+    </div>
 
-  </div> <!-- End .content-box-content -->
+  </div>
 
 </div>

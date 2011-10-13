@@ -2,7 +2,7 @@
 
   <div class="content-box-header">
 
-    <h3 style="cursor: s-resize; ">Nueva Tarifa</h3>
+    <h3 style="cursor: s-resize; ">Nuevo sensor</h3>
 
     <div class="clear"></div>
 

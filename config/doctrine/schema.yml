@@ -45,3 +45,12 @@ Unidades:
   columns:
     unidad:     { type: text, notnull: true }
 
+Registro:
+  columns:
+    potencia:       { type: float, notnull: true, scale: 2 }
+    registrado_at:  { type: timestamp, notnull: true }
+    sensor_id :     { type: bigint(20), notnull: true }
+  relations:
+    Sensores:       { onDelete: CASCADE, local: sensor_id, foreign: id, foreignAlias: Sensores }
+
+

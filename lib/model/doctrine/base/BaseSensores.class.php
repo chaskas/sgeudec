@@ -9,15 +9,18 @@
  * @property text $ubicacion
  * @property bigint $ptomonit_id
  * @property Ptomonit $Ptomonit
+ * @property Doctrine_Collection $Sensores
  * 
- * @method text     getIdentificador() Returns the current record's "identificador" value
- * @method text     getUbicacion()     Returns the current record's "ubicacion" value
- * @method bigint   getPtomonitId()    Returns the current record's "ptomonit_id" value
- * @method Ptomonit getPtomonit()      Returns the current record's "Ptomonit" value
- * @method Sensores setIdentificador() Sets the current record's "identificador" value
- * @method Sensores setUbicacion()     Sets the current record's "ubicacion" value
- * @method Sensores setPtomonitId()    Sets the current record's "ptomonit_id" value
- * @method Sensores setPtomonit()      Sets the current record's "Ptomonit" value
+ * @method text                getIdentificador() Returns the current record's "identificador" value
+ * @method text                getUbicacion()     Returns the current record's "ubicacion" value
+ * @method bigint              getPtomonitId()    Returns the current record's "ptomonit_id" value
+ * @method Ptomonit            getPtomonit()      Returns the current record's "Ptomonit" value
+ * @method Doctrine_Collection getSensores()      Returns the current record's "Sensores" collection
+ * @method Sensores            setIdentificador() Sets the current record's "identificador" value
+ * @method Sensores            setUbicacion()     Sets the current record's "ubicacion" value
+ * @method Sensores            setPtomonitId()    Sets the current record's "ptomonit_id" value
+ * @method Sensores            setPtomonit()      Sets the current record's "Ptomonit" value
+ * @method Sensores            setSensores()      Sets the current record's "Sensores" collection
  * 
  * @package    sgeudec
  * @subpackage model
@@ -51,5 +54,9 @@ abstract class BaseSensores extends sfDoctrineRecord
              'local' => 'ptomonit_id',
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));
+
+        $this->hasMany('Registro as Sensores', array(
+             'local' => 'id',
+             'foreign' => 'sensor_id'));
     }
 }

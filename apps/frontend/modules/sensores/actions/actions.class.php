@@ -69,14 +69,15 @@ class sensoresActions extends sfActions {
   }
 
   public function executeAddToSensor(sfWebRequest $request) {
-    $this->forward404Unless($request->isMethod(sfRequest::POST));
+    //$this->forward404Unless($request->isMethod(sfRequest::POST));
     $sensor_id = $request->getParameter('sensor_id');
     if (($handle = fopen("http://".$_SERVER['HTTP_HOST']."/uploads/datos/sensor3f.csv", "r")) !== FALSE) {
       while (($data = fgetcsv($handle, 0, ";")) !== FALSE) {
         $registro = new Registro();
         $registro->setPotencia($data[1]);
         $registro->setRegistradoAt($data[0]);
-        $registro->setSensorId($sensor_id);
+        //$registro->setSensorId($sensor_id);
+        $registro->setSensorId(1);
         $registro->save();
       }
       fclose($handle);

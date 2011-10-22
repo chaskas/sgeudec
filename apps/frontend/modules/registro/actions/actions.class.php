@@ -12,9 +12,10 @@ class registroActions extends sfActions
 {
   public function executeIndex(sfWebRequest $request)
   {
-    $this->registros = Doctrine_Core::getTable('Registro')
-      ->createQuery('a')
-      ->execute();
+    $this->pager = new sfDoctrinePager('registro', sfConfig::get('app_max_registros_on_index'));
+    $this->pager->setQuery(Doctrine::getTable('Registro')->createQuery('a'));
+    $this->pager->setPage($request->getParameter('page', 1));
+    $this->pager->init();
   }
 
   public function executeShow(sfWebRequest $request)

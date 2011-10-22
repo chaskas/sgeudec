@@ -15,8 +15,11 @@
           <h1 id="sidebar-title"><a href="#">Inicia</a></h1>
 
           <!-- Logo (221px wide) -->
-          <a href="<?php echo url_for(@homepage); ?>">SGE UdeC</a>
-
+          <br/><br/>
+          <center>
+          <a href="<?php echo url_for(@homepage); ?>"><?php echo image_tag('UdeC.png','size=150x71'); ?></a>
+          </center>
+          <br/><br/>
           <!-- Sidebar Profile links -->
           <?php if ($sf_user->isAuthenticated()): ?>
           <div id="profile-links">

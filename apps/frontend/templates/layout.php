@@ -71,8 +71,7 @@
 		Acerca de
               </a>
               <ul>
-                <li><a <?php if($sf_context->getActionName()=='index' && $sf_context->getModuleName()=='tarifa') echo "class='current'"; ?> href="<?php echo url_for('tarifa/index'); ?>">Acerca de</a></li>
-                <li><a <?php if($sf_context->getActionName()=='new' && $sf_context->getModuleName()=='tarifa') echo "class='current'"; ?> href="<?php echo url_for('tarifa/new'); ?>">Crear nueva tarifa</a></li>
+                <li><a href="#">Acerca de</a></li>
               </ul>
             </li>
 

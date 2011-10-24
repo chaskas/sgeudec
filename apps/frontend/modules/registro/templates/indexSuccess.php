@@ -50,8 +50,6 @@
                 <?php echo link_to('« Primera', 'registro/index?page='.$pager->getFirstPage()) ?>
                 <?php echo link_to('« Anterior', 'registro/index?page='.$pager->getPreviousPage()) ?>
 
-                <?php $links = $pager->getLinks(); ?>
-
                 <?php foreach ($pager->getLinks() as $page): ?>
                   <?php if ($page == $pager->getPage()): ?>
                     <a href="<?php echo url_for('registro/index') ?>?page=<?php echo $page ?>" class="number current"><?php echo $page ?></a>
@@ -61,7 +59,7 @@
                 <?php endforeach; ?>
 
                 <?php echo link_to('Siguiente »', 'registro/index?page='.$pager->getNextPage()) ?>
-                <?php echo link_to('Siguiente »', 'registro/index?page='.$pager->getLastPage()) ?>
+                <?php echo link_to('&Uacute;ltima »', 'registro/index?page='.$pager->getLastPage()) ?>
               </div>
               <div class="clear"></div>
             </td>

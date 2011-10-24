@@ -68,6 +68,36 @@ class sensoresActions extends sfActions {
     }
   }
 
+  public function executeUpload(sfWebRequest $request){
+    $this->form = new UploadRegistroForm('',array('sensor_id'=>$this->sensor_id = $request->getParameter('id')));
+  }
+  public function executeUploadCreate(sfWebRequest $request)
+  {
+    $this->forward404Unless($request->isMethod(sfRequest::POST));
+    $this->form = new UploadRegistroForm();
+    $this->processUpload($request, $this->form);
+    $this->setTemplate('upload');
+  }
+  protected function processUpload(sfWebRequest $request, sfForm $form)
+  {
+    $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
+
+    if ($form->isValid())
+    {
+      $sensor = Doctrine::getTable('Sensores')->findOneBy('id',$this->form->getValue('sensor_id'));
+
+      //procesar el archivo
+      $file = $this->form->getValue('file');
+      $filename = 'sensor_'.$sensor->getId().'_'.$file->getOriginalName();
+      //$fileext  = $file->getExtension($file->getOriginalExtension());
+      $file->save(sfConfig::get('sf_upload_dir').'/datos/'.$filename);
+      $this->redirect('sensores/ok');
+    }
+  }
+  public function executeOk(sfWebRequest $request)
+  {
+
+  }
   public function executeAddToSensor(sfWebRequest $request) {
     //$this->forward404Unless($request->isMethod(sfRequest::POST));
     $sensor_id = $request->getParameter('sensor_id');

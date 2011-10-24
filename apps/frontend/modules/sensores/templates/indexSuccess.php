@@ -36,6 +36,7 @@
               <td>
                 <?php echo link_to(image_tag('icons/pencil.png',array('alt'=>'Editar','title'=>'Editar')), 'sensores/edit?id='.$sensores->getId()) ?>
                 <?php echo link_to(image_tag('icons/cross.png',array('alt'=>'Eliminar','title'=>'Eliminar')), 'sensores/delete?id='.$sensores->getId(), array('method' => 'delete', 'confirm' => '¿Estas seguro?')) ?>
+                <?php echo link_to(image_tag('icons/database_upload.png',array('alt'=>'Subir datos','title'=>'Subir datos')), 'sensores/upload?id='.$sensores->getId()) ?>
               </td>
             </tr>
           <?php $i++; ?>

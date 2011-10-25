@@ -32,12 +32,11 @@
           <ul id="main-nav">  <!-- Accordion Menu -->
 
             <li>
-              <a href="<?php echo url_for('tarifa/index'); ?>" class="nav-top-item <?php if($sf_context->getModuleName()=='tarifaxxx') echo "current"; ?>"> <!-- Add the class "no-submenu" to menu items with no sub menu -->
+              <a href="#" class="nav-top-item <?php if($sf_context->getModuleName()=='energia') echo "current"; ?>"> <!-- Add the class "no-submenu" to menu items with no sub menu -->
 		Gr&aacute;ficos
               </a>
               <ul>
-                <li><a href="#" style="font-size: 1.2em;color:#FFF;">Consumo Energ&eacute;tico</a></li>
-                <li><a href="#">Diario</a></li>
+                <li><a <?php if($sf_context->getActionName()=='index' && $sf_context->getModuleName()=='energia') echo "class='current'"; ?> href="<?php echo url_for('energia/index'); ?>">Diario</a></li>
                 <li><a href="#">Semanal</a></li>
                 <li><a href="#">Mensual</a></li>
               </ul>

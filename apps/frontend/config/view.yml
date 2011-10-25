@@ -6,7 +6,7 @@ default:
     content-type: text/html
 
   metas:
-    title:        Sistema de Gestión de Energía - UdeC
+    title:        Sistema de Gestión Energética - UdeC
     #description:  symfony project
     #keywords:     symfony, project
     #language:     en

@@ -41,4 +41,19 @@ class EnergiaSensorForm extends sfForm {
 
 }
 
+class EnergiaFechaForm extends sfForm {
+
+  public function configure() {
+
+    $this->widgetSchema['fecha']= new sfWidgetFormJQueryDate(array('config' => '{showOn: "button",buttonImage: "/images/icons/calendar.png",buttonImageOnly: true,changeMonth: true,changeYear: true}','culture'=>'es'));
+    $this->widgetSchema['fecha']->getOption('date_widget')->setOption('format', '%day%%month%%year%');
+
+    $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
+    $this->widgetSchema->setNameFormat('energia[%s]');
+    $this->widgetSchema->setFormFormatterName('list');
+
+  }
+
+}
+
 ?>

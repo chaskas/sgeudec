@@ -18,7 +18,8 @@ class energiaActions extends sfActions
   public function executeIndex(sfWebRequest $request)
   {
     $this->recintos = new EnergiaRecintoForm();
-    $this->ptomonits = new EnergiaPtomonitForm();
+    //$this->ptomonits = new EnergiaPtomonitForm();
+    $this->fecha = new EnergiaFechaForm();
   }
   public function executePtomonit(sfWebRequest $request)
   {
@@ -29,5 +30,10 @@ class energiaActions extends sfActions
   {
     $this->getUser()->setAttribute('ptomonit_id',$request->getParameter('ptomonit_id'));
     $this->sensores = new EnergiaSensorForm();
+  }
+  public function executeFecha(sfWebRequest $request)
+  {
+    //$this->getUser()->setAttribute('ptomonit_id',$request->getParameter('ptomonit_id'));
+    $this->fecha = new EnergiaFechaForm();
   }
 }

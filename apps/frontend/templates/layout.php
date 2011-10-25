@@ -8,7 +8,7 @@
     <?php include_javascripts() ?>
   </head>
   <body>
-    <div id="body-wrapper"> <!-- Wrapper for the radial gradient background -->
+    <div id="body-wrapper">
 
       <div id="sidebar"><div id="sidebar-wrapper"> <!-- Sidebar with logo and menu -->
 
@@ -36,8 +36,10 @@
 		Gr&aacute;ficos
               </a>
               <ul>
-                <li><a <?php if($sf_context->getActionName()=='indexxxx' && $sf_context->getModuleName()=='tarifaxxx') echo "class='current'"; ?> href="<?php echo url_for('tarifa/index'); ?>">Gr&aacute;ficos</a></li>
-                <li><a <?php if($sf_context->getActionName()=='newxxx' && $sf_context->getModuleName()=='tarifaxxx') echo "class='current'"; ?> href="<?php echo url_for('tarifa/new'); ?>">Crear nueva tarifa</a></li>
+                <li><a href="#" style="font-size: 1.2em;color:#FFF;">Consumo Energ&eacute;tico</a></li>
+                <li><a href="#">Diario</a></li>
+                <li><a href="#">Semanal</a></li>
+                <li><a href="#">Mensual</a></li>
               </ul>
             </li>
             <li>

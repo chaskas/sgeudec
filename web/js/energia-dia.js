@@ -7,7 +7,7 @@ google.setOnLoadCallback(initialize);
 function initialize() {
   // Replace the data source URL on next line with your data source URL.
   // Specify that we want to use the XmlHttpRequest object to make the query.
-  var query = new google.visualization.Query('http://sgeudec/energia/DiaGetData');
+  var query = new google.visualization.Query('http://sgeudec.webdevel.cl/energia/DiaGetData');
   
   // Send the query with a callback function.
   query.send(handleQueryResponse);

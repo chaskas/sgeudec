@@ -21,7 +21,7 @@ class SensoresTable extends Doctrine_Table {
     return Doctrine_Query::create()
                     ->select('*')
                     ->from('Sensores')
-                    -> where('ptomonit_id=?',$ptomonit_id)
+                    ->where('ptomonit_id=?',$ptomonit_id)
                     ->OrderBy('identificador asc')
                     ->execute();
   }

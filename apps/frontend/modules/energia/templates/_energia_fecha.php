@@ -6,7 +6,7 @@
 <?php use_helper('jQuery'); ?>
 
 <form method="post" <?php $fecha->isMultipart() and print 'enctype="multipart/form-data" ' ?>>
-    <label style="float:left;width:22%;">Recintos<br/>
+  <label style="float:left;width:22%;">Fecha <span style="color:red;font-weight: normal;">(*)</span><br/>
     <?php echo $fecha['fecha']->Render(array('onchange'=>jq_remote_function(array('update' => 'grafico','url' => 'energia/grafico','with'     => " 'dia=' +this.value")),'class'=>'text-input')); ?>
     </label>
   <?php $fecha->RenderHiddenFields(); ?>

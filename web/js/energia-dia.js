@@ -22,5 +22,11 @@ function handleQueryResponse(response) {
 
   var data = response.getDataTable();
   var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
-  chart.draw(data, {width:700, height:450, is3D:true});
+  
+  var options = { 'width':700,
+                  'height':450,
+                  'is3D': false
+                };
+
+  chart.draw(data, options);
 }

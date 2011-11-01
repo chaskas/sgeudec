@@ -5,9 +5,15 @@
 <?php use_javascript('jquery.ui.datepicker-es.js'); ?>
 <?php use_helper('jQuery'); ?>
 
+<script>
+    $(function() {
+        $( "#energia_fecha" ).datepicker({ dateFormat: 'yy-mm-dd' });
+    });
+</script>
+
 <form method="post" <?php $fecha->isMultipart() and print 'enctype="multipart/form-data" ' ?>>
-  <label style="float:left;">Fecha <span style="color:red;font-weight: normal;">(*)</span><br/>
-    <?php echo $fecha['fecha']->Render(array('onchange'=>jq_remote_function(array('update' => 'grafico','url' => 'energia/graficoDia','with'     => " 'fecha=' +this.value")),'class'=>'text-input','style'=>'z-index:99999 !important;')); ?>
+    <label style="float:left;">Fecha <span style="color:red;font-weight: normal;">(*)</span><br/>
+        <?php echo $fecha['fecha']->Render(array('onchange' => jq_remote_function(array('update' => 'grafico', 'url' => 'energia/graficoFecha', 'with' => " 'fecha=' +this.value")), 'class' => 'text-input')); ?>
     </label>
-  <?php $fecha->RenderHiddenFields(); ?>
+    <?php $fecha->RenderHiddenFields(); ?>
 </form>

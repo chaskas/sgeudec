@@ -15,8 +15,8 @@
       <div id="ptomonits"></div>
       <div id="sensores"></div>
       <div id="fecha"><?php include_partial('energia_fecha', array('fecha' => $fecha)) ?></div>
-      <div style="clear:both;"></div>
-      <div id="grafico"><?php // include_partial('energia_grafico_dia', array('gdia' => $gdia)) ?></div>
+      <div style="clear:both;padding-bottom:10px;"></div>
+      <div id="grafico"></div>
        <span style="color:red;">(*) : Campos Obligatorios</span>
     </div>
 

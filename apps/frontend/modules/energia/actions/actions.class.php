@@ -20,6 +20,9 @@ class energiaActions extends sfActions {
     //$this->ptomonits = new EnergiaPtomonitForm();
     $this->fecha = new EnergiaFechaForm();
     $this->gdia = 0;
+    $this->getUser()->setAttribute('recinto_id', '');
+    $this->getUser()->setAttribute('ptomonit_id', '');
+    $this->getUser()->setAttribute('fecha', '');
   }
 
   public function executePtomonit(sfWebRequest $request) {
@@ -36,45 +39,18 @@ class energiaActions extends sfActions {
     
 //    $this->fecha = new EnergiaFechaForm();
   }
-
-  public function executeDiaGetData(sfWebRequest $request) {
-    //Accion para recuperar datos de clicks hechos en iconos y luego mostrar en google chart
-    $params["tqx"] = $request->getParameter("tqx");
-    list($param[], $reqId) = explode(":", $params["tqx"]);
-
-    $datos = Doctrine_Query::create()
-            ->select("potencia,registrado_at")
-            ->from("Registro")
-            ->where('registrado_at between ? and ?', array('2011-07-07 00:00:00', '2011-07-07 23:59:00'))
-            ->execute();
-
-    $output = "google.visualization.Query.setResponse({'$param[0]':'$reqId', 'status':'OK',";
-    $output .= "'table': {cols: [";
-    $output .= "{id:'registrado_at',label:'Fecha',type:'string'},";
-    $output .= "{id:'potencia',label:'Potencia',type:'number'}";
-    $output .= "]";
-    $output .= ",rows: [";
-
-    $sp = "";
-
-    foreach ($datos as $dato) {
-      $output .= $sp . "{c:[{v:'" . $dato["registrado_at"] . "'},{v:" . $dato["potencia"] . ",f:'" . $dato["potencia"] . "'}]}";
-      $sp = ",";
-    }
-    $output .= "]}});";
-    $this->getResponse()->setHttpHeader('Content-type', 'text/plain');
-    return $this->renderText($output);
-  }
   
-  public function executeGraficoDia(sfWebRequest $request){
+  public function executeGraficoPtomonit(sfWebRequest $request){
     $this->getUser()->setAttribute('ptomonit_id', $request->getParameter('ptomonit_id'));
+  }
+  public function executeGraficoFecha(sfWebRequest $request){
     $this->getUser()->setAttribute('fecha',$request->getParameter('fecha'));
   }
 
   public function executeLineChartData() {
     
-    $ptomonit_id = sfContext::getInstance()->getUser()->getAttribute('ptomonit_id');
-    $fecha = sfContext::getInstance()->getUser()->getAttribute('fecha');
+    $ptomonit_id = $this->getUser()->getAttribute('ptomonit_id');
+    $fecha = $this->getUser()->getAttribute('fecha');
 
     $color = array('#D2691E','#DC143C','#556B2F','#00FFFF','#8A2BE2','#2F4F4F','#FFD700','#FF69B4','#98FB98','#BC8F8F');
     $Y_Max = 0;
@@ -103,7 +79,7 @@ class energiaActions extends sfActions {
       $this->registros = Doctrine_Query::create()
               ->select("potencia,registrado_at")
               ->from("Registro")
-              ->where('registrado_at between ? and ?', array('2011-07-07 00:00:00', '2011-07-07 23:59:00'))
+              ->where('registrado_at between ? and ?', array($fecha.' 00:00:00', $fecha.' 23:59:59'))
               ->andWhere('sensor_id = ?', $sensor->getId())
               ->execute();
 

@@ -96,9 +96,10 @@ function _ofc( $width, $height, $url, $use_swfobject, $base )
     $out[] = '<param name="allowScriptAccess" value="sameDomain" />';
     $out[] = '<param name="movie" value="'. $base .'open-flash-chart.swf?width='. $width .'&height='. $height . '&data='. $url .'" />';
     $out[] = '<param name="quality" value="high" />';
+    $out[] = '<param name="wmode" value="transparent" />';
     $out[] = '<param name="bgcolor" value="#FFFFFF" />';
     $out[] = '<embed src="'. $base .'open-flash-chart.swf?data=' . $url .'" quality="high" bgcolor="#FFFFFF" width="'. $width .'" height="'. $height .'" name="'. $obj_id .'" align="middle" allowScriptAccess="sameDomain" ';
-    $out[] = 'type="application/x-shockwave-flash" pluginspage="' . $protocol . '://www.macromedia.com/go/getflashplayer" id="'. $obj_id .'"/>';
+    $out[] = 'type="application/x-shockwave-flash" pluginspage="' . $protocol . '://www.macromedia.com/go/getflashplayer" id="'. $obj_id .'" wmode="transparent" />';
     $out[] = '</object>';
 
     if ( $use_swfobject ) {

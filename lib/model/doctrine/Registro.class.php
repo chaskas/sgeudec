@@ -12,4 +12,13 @@
  */
 class Registro extends BaseRegistro
 {
+  public function getFecha(){
+    $date = date_create($this->getRegistradoAt());
+    return date_format($date,'d/m/Y');
+  }
+  public function getHora(){
+    $date = date_create($this->getRegistradoAt());
+    return date_format($date,'H:i');
+  }
+  
 }

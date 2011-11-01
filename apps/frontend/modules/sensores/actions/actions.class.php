@@ -69,7 +69,8 @@ class sensoresActions extends sfActions {
   }
 
   public function executeUpload(sfWebRequest $request){
-    $this->form = new UploadRegistroForm('',array('sensor_id'=>$this->sensor_id = $request->getParameter('id')));
+    $this->getUser()->setAttribute('sensor_id', $request->getParameter('id'));
+    $this->form = new UploadRegistroForm();
   }
   public function executeUploadCreate(sfWebRequest $request)
   {
@@ -84,13 +85,14 @@ class sensoresActions extends sfActions {
 
     if ($form->isValid())
     {
-      $sensor = Doctrine::getTable('Sensores')->findOneBy('id',$this->form->getValue('sensor_id'));
+      $sensor_id = sfContext::getInstance()->getUser()->getAttribute('sensor_id');
 
       //procesar el archivo
       $file = $this->form->getValue('file');
-      $filename = 'sensor_'.$sensor->getId().'_'.$file->getOriginalName();
+      $filename = 'sensor_'.$sensor_id.'_'.$file->getOriginalName();
       //$fileext  = $file->getExtension($file->getOriginalExtension());
       $file->save(sfConfig::get('sf_upload_dir').'/datos/'.$filename);
+      $this->processAddToSensor($filename,$sensor_id);
       $this->redirect('sensores/ok');
     }
   }
@@ -98,16 +100,15 @@ class sensoresActions extends sfActions {
   {
 
   }
-  public function executeAddToSensor(sfWebRequest $request) {
-    //$this->forward404Unless($request->isMethod(sfRequest::POST));
-    $sensor_id = $request->getParameter('sensor_id');
-    if (($handle = fopen("http://".$_SERVER['HTTP_HOST']."/uploads/datos/sensor3f.csv", "r")) !== FALSE) {
+  protected function processAddToSensor($sensor_filename,$sensor_id) {
+    
+    if (($handle = fopen("http://".$_SERVER['HTTP_HOST']."/uploads/datos/".$sensor_filename, "r")) !== FALSE) {
       while (($data = fgetcsv($handle, 0, ";")) !== FALSE) {
         $registro = new Registro();
         $registro->setPotencia($data[1]);
         $registro->setRegistradoAt($data[0]);
         //$registro->setSensorId($sensor_id);
-        $registro->setSensorId(1);
+        $registro->setSensorId($sensor_id);
         $registro->save();
       }
       fclose($handle);

@@ -55,4 +55,19 @@ class EnergiaFechaForm extends sfForm {
 
 }
 
+class EnergiaFechaPeriodoForm extends sfForm {
+
+  public function configure() {
+      
+    $this->widgetSchema['fechaIni']= new sfWidgetFormInput();
+    $this->widgetSchema['fechaFin']= new sfWidgetFormInput();
+
+    $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
+    $this->widgetSchema->setNameFormat('energia[%s]');
+    $this->widgetSchema->setFormFormatterName('list');
+
+  }
+
+}
+
 ?>

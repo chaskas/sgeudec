@@ -8,7 +8,7 @@
  * @author     Your name here
  * @version    SVN: $Id: actions.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
-class energiaActions extends sfActions {
+class energiaDiaActions extends sfActions {
 
   /**
    * Executes index action
@@ -44,7 +44,10 @@ class energiaActions extends sfActions {
     $this->getUser()->setAttribute('ptomonit_id', $request->getParameter('ptomonit_id'));
   }
   public function executeGraficoFecha(sfWebRequest $request){
-    $this->getUser()->setAttribute('fecha',$request->getParameter('fecha'));
+      
+    $date = date_create_from_format('d/m/Y',$request->getParameter('fecha'));
+      
+    $this->getUser()->setAttribute('fecha',date_format($date, 'Y-m-d'));
   }
 
   public function executeLineChartData() {
@@ -59,7 +62,7 @@ class energiaActions extends sfActions {
     $g = new stGraph();
 
     // Chart Title
-    $g->title('Potencia', '{font-size: 20px;}');
+    $g->title('Energía por Día', '{font-size: 20px;}');
     $g->bg_colour = '#FFFFFF';
     $g->set_inner_background('#FFFFFF', '#FFFFFF', 90);
     $g->x_axis_colour('#8499A4', '#E4F5FC');
@@ -85,7 +88,7 @@ class energiaActions extends sfActions {
 
       $chartData = array();
       foreach ($this->registros as $dato) {
-        $chartData[] = $dato->getPotencia();
+        $chartData[] = $dato->getPotencia()*5;
       }
       
       $Y_Max = max($chartData);
@@ -104,7 +107,7 @@ class energiaActions extends sfActions {
     $g->set_x_labels($horas);
 
     //to set the format of labels on x-axis e.g. font, color, orientation, step
-    $g->set_x_label_style(10, '#778899', 2, 10);
+    $g->set_x_label_style(10, '#778899', 2, 12);
     
     $g->set_y_max($Y_Max+$Y_Max/2);
 

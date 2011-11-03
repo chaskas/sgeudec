@@ -1,0 +1,1 @@
+<?php stOfc::createChart(700, 400, 'energiaPeriodo/LineChartData', false); ?>

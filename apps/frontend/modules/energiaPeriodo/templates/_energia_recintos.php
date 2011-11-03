@@ -4,7 +4,7 @@
 
 <form method="post" <?php $recintos->isMultipart() and print 'enctype="multipart/form-data" ' ?>>
     <label style="float:left;padding-right: 15px;">Recintos <span style="color:red;font-weight: normal;">(*)</span><br/>
-    <?php echo $recintos['recinto']->Render(array('onchange'=>jq_remote_function(array('update' => 'ptomonits','url' => 'energia/ptomonit','with'     => " 'recinto_id=' +this.value")),'class'=>'text-input large-input2')); ?>
+    <?php echo $recintos['recinto']->Render(array('onchange'=>jq_remote_function(array('update' => 'ptomonits','url' => 'energiaPeriodo/ptomonit','with'     => " 'recinto_id=' +this.value")),'class'=>'text-input large-input2')); ?>
     </label>
   <?php $recintos->RenderHiddenFields(); ?>
 </form>

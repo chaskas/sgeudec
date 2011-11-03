@@ -7,13 +7,13 @@
 
 <script>
     $(function() {
-        $( "#energia_fecha" ).datepicker({ dateFormat: 'yy-mm-dd' });
+        $( "#energia_fecha" ).datepicker({ dateFormat: 'dd/mm/yy' });
     });
 </script>
 
 <form method="post" <?php $fecha->isMultipart() and print 'enctype="multipart/form-data" ' ?>>
     <label style="float:left;">Fecha <span style="color:red;font-weight: normal;">(*)</span><br/>
-        <?php echo $fecha['fecha']->Render(array('onchange' => jq_remote_function(array('update' => 'grafico', 'url' => 'energia/graficoFecha', 'with' => " 'fecha=' +this.value")), 'class' => 'text-input')); ?>
+        <?php echo $fecha['fecha']->Render(array('onchange' => jq_remote_function(array('update' => 'grafico', 'url' => 'energiaDia/graficoFecha', 'with' => " 'fecha=' +this.value")), 'class' => 'text-input','style'=>'width:80px')); ?>
     </label>
     <?php $fecha->RenderHiddenFields(); ?>
 </form>

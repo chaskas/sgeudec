@@ -32,12 +32,12 @@
           <ul id="main-nav">  <!-- Accordion Menu -->
 
             <li>
-              <a href="#" class="nav-top-item <?php if($sf_context->getModuleName()=='energia') echo "current"; ?>"> <!-- Add the class "no-submenu" to menu items with no sub menu -->
+              <a href="#" class="nav-top-item <?php if($sf_context->getModuleName()=='energiaDia' || $sf_context->getModuleName()=='energiaPeriodo' || $sf_context->getModuleName()=='energiaMes') echo "current"; ?>"> <!-- Add the class "no-submenu" to menu items with no sub menu -->
 		Gr&aacute;ficos
               </a>
               <ul>
-                <li><a <?php if($sf_context->getActionName()=='index' && $sf_context->getModuleName()=='energia') echo "class='current'"; ?> href="<?php echo url_for('energia/index'); ?>">Diario</a></li>
-                <li><a href="#">Semanal</a></li>
+                <li><a <?php if($sf_context->getActionName()=='index' && $sf_context->getModuleName()=='energiaDia') echo "class='current'"; ?> href="<?php echo url_for('energiaDia/index'); ?>">Diario</a></li>
+                <li><a <?php if($sf_context->getActionName()=='index' && $sf_context->getModuleName()=='energiaPeriodo') echo "class='current'"; ?> href="<?php echo url_for('energiaPeriodo/index'); ?>">Periodo</a></li>
                 <li><a href="#">Mensual</a></li>
               </ul>
             </li>

@@ -75,6 +75,9 @@ class energiaPeriodoActions extends sfActions {
     $g->x_axis_colour('#8499A4', '#E4F5FC');
     $g->y_axis_colour('#8499A4', '#E4F5FC');
 
+$g->set_y_legend( 'kWh Consumidos', 15, '#736AFF' );
+$g->set_x_legend( 'Dias', 15, '#736AFF' );
+
     $g->set_x_tick_size(10);
 
     $this->sensores = Doctrine_Core::getTable('Sensores')
@@ -94,12 +97,12 @@ class energiaPeriodoActions extends sfActions {
               ->execute();
 
       $chartData = array();
-      $j = 1;
+      $j = 0;
       $hora = 0;
       $horas = array();
       foreach ($this->registros as $dato) {
-          $hora += $dato->getPotencia()*5;
-          if($j==13 || $j == 0){
+          $hora += $dato->getPotencia()*(5/60);
+          if($j==12 || $j == 0){
               $chartData[] = $hora;
               $hora = 0;
               $j = 0;

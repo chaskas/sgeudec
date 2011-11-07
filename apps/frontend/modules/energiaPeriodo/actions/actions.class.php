@@ -55,28 +55,23 @@ class energiaPeriodoActions extends sfActions {
         $this->getUser()->setAttribute('fechaFin',date_format($dateFin, 'Y-m-d'));
     }
   }
-
-  public function executeLineChartData() {
+  
+  public function executeBarChartData() {
     
     $ptomonit_id = $this->getUser()->getAttribute('ptomonit_id');
     $fechaIni = $this->getUser()->getAttribute('fechaIni');
     $fechaFin = $this->getUser()->getAttribute('fechaFin');
 
-    $color = array('#D2691E','#DC143C','#556B2F','#00FFFF','#8A2BE2','#2F4F4F','#FFD700','#FF69B4','#98FB98','#BC8F8F');
+    $color = array('#DC143C','#556B2F','#00FFFF','#8A2BE2','#2F4F4F','#FFD700','#FF69B4','#D2691E','#98FB98','#BC8F8F');
     $Y_Max = 0;
 
-    //Create new stGraph object
     $g = new stGraph();
 
-    // Chart Title
     $g->title('Energía por Periodo', '{font-size: 20px;}');
     $g->bg_colour = '#FFFFFF';
     $g->set_inner_background('#FFFFFF', '#FFFFFF', 90);
     $g->x_axis_colour('#8499A4', '#E4F5FC');
     $g->y_axis_colour('#8499A4', '#E4F5FC');
-
-$g->set_y_legend( 'kWh Consumidos', 15, '#736AFF' );
-$g->set_x_legend( 'Dias', 15, '#736AFF' );
 
     $g->set_x_tick_size(10);
 
@@ -84,10 +79,15 @@ $g->set_x_legend( 'Dias', 15, '#736AFF' );
             ->createQuery('a')
             ->where('ptomonit_id = ?',$ptomonit_id)
             ->execute();
-    
-    
+ 
     $i = 0;
+    $j = 1; //contador del sumador de energia por hora
+    
+    $tmp = 0;
     foreach ($this->sensores as $sensor) {
+      
+      $bar_1 = new bar( 90, $color[$i]);
+      $bar_1->key( $sensor->getIdentificador(), 12 );
       
       $this->registros = Doctrine_Query::create()
               ->select("potencia,registrado_at")
@@ -95,45 +95,36 @@ $g->set_x_legend( 'Dias', 15, '#736AFF' );
               ->where('registrado_at between ? and ?', array($fechaIni.' 00:00:00', $fechaFin.' 23:59:59'))
               ->andWhere('sensor_id = ?', $sensor->getId())
               ->execute();
-
-      $chartData = array();
-      $j = 0;
-      $hora = 0;
       $horas = array();
       foreach ($this->registros as $dato) {
-          $hora += $dato->getPotencia()*(5/60);
-          if($j==12 || $j == 0){
-              $chartData[] = $hora;
-              $hora = 0;
-              $j = 0;
-              $horas[] = $dato->getHora()."\n". $dato->getFecha();
-          }
-          $j++;
+        $tmp += $dato->getPotencia()*(15/60);
+        if($j==96){
+          $bar_1->data[] = $tmp;
+          $tmp = 0;
+          $j = 0;
+          $horas[] = $dato->getFecha();
+        }
+        $j++;
       }
-      
-      $Y_Max = max($chartData);
-      
-      $g->set_data($chartData);
-      $g->line(2, $color[$i], $sensor->getIdentificador(), 10);
+      $tmp = 0;
+      $j = 1;
+      $Y_Max = max($bar_1->data);
 
-      
-//      foreach ($this->registros as $dato) {
-//        
-//      }
+      $g->data_sets[] = $bar_1;
       $i++;
     }
-
     
     $g->set_x_labels($horas);
 
-    //to set the format of labels on x-axis e.g. font, color, orientation, step
-    $g->set_x_label_style(8, '#222222', 2, 1);
+    $g->set_x_label_style(10, '#778899', 2, 1);
     
     $g->set_y_max($Y_Max+$Y_Max/2);
 
-    $g->y_label_steps(15);
+    $g->y_label_steps(10);
+    
+    $g->set_y_legend( 'kWh Consumido', 12, '0x736AFF' );
+    $g->set_x_legend( 'Dias', 12, '0x736AFF' );
 
-    // display the data
     echo $g->render();
 
     return sfView::NONE;

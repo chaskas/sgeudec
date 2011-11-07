@@ -1,5 +1,17 @@
 Sensores:
   sensor1:
-    identificador:  Sensor 3
+    identificador:  Sensor 1
     ubicacion:      A
+    Ptomonit:       pto1
+  sensor2:
+    identificador:  Sensor 2
+    ubicacion:      B
+    Ptomonit:       pto1
+  sensor3:
+    identificador:  Sensor 3
+    ubicacion:      C
+    Ptomonit:       pto1
+  sensor4:
+    identificador:  Sensor 4
+    ubicacion:      D
     Ptomonit:       pto1

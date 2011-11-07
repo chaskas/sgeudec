@@ -1,1 +1,1 @@
-<?php stOfc::createChart('100%', 350, 'energiaPeriodo/LineChartData', false); ?>
+<?php stOfc::createChart('100%', 350, 'energiaPeriodo/BarChartData', false); ?>

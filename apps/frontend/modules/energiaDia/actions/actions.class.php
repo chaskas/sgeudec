@@ -60,7 +60,7 @@ class energiaDiaActions extends sfActions {
 
     $g = new stGraph();
 
-    $g->title('Energía por Día', '{font-size: 20px;}');
+    $g->title('Consumo de Energia Diario (kWh)', '{font-size: 20px;}');
     $g->bg_colour = '#FFFFFF';
     $g->set_inner_background('#FFFFFF', '#FFFFFF', 90);
     $g->x_axis_colour('#8499A4', '#E4F5FC');
@@ -74,7 +74,7 @@ class energiaDiaActions extends sfActions {
             ->execute();
  
     $i = 0;
-    $j = 0; //contador del sumador de energia por hora
+    $j = 1; //contador del sumador de energia por hora
     
     $tmp = 0;
     foreach ($this->sensores as $sensor) {
@@ -91,21 +91,20 @@ class energiaDiaActions extends sfActions {
       $horas = array();
       foreach ($this->registros as $dato) {
         $tmp += $dato->getPotencia()*(15/60);
-        if($j==4 || $j == 0){
+        
+        if($j==1)$horas[] = $dato->getHora();
+        
+        if($j==4){
           $bar_1->data[] = $tmp;
           $tmp = 0;
           $j = 0;
-          $horas[] = $dato->getHora();
         }
+        
         $j++;
       }
-      
+      $j = 1;
       $Y_Max = max($bar_1->data);
-
-//      $horas = array();
-//      foreach ($this->registros as $dato) {
-//        $horas[] = $dato->getHora();
-//      }
+      $maxT[] = $Y_Max;
       $g->data_sets[] = $bar_1;
       $i++;
     }
@@ -114,7 +113,7 @@ class energiaDiaActions extends sfActions {
 
     $g->set_x_label_style(10, '#778899', 2, 1);
     
-    $g->set_y_max($Y_Max+$Y_Max/2);
+    $g->set_y_max(max($maxT)+max($maxT)/3);
 
     $g->y_label_steps(15);
     
@@ -164,10 +163,11 @@ class energiaDiaActions extends sfActions {
 
       $chartData = array();
       foreach ($this->registros as $dato) {
-        $chartData[] = $dato->getPotencia()*(5/60);
+        $chartData[] = $dato->getPotencia()*(15/60);
       }
       
       $Y_Max = max($chartData);
+      $maxT[] = $Y_Max;
       
       $g->set_data($chartData);
       $g->line(2, $color[$i], $sensor->getIdentificador(), 10);
@@ -185,7 +185,7 @@ class energiaDiaActions extends sfActions {
     //to set the format of labels on x-axis e.g. font, color, orientation, step
     $g->set_x_label_style(10, '#778899', 2, 4);
     
-    $g->set_y_max($Y_Max+$Y_Max/2);
+    $g->set_y_max(max($maxT)+max($maxT)/3);
 
     $g->y_label_steps(15);
     

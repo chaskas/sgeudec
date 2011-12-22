@@ -20,6 +20,7 @@ abstract class BaseCargosForm extends BaseFormDoctrine
       'valor'       => new sfWidgetFormInputText(),
       'tarifa_id'   => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Tarifas'), 'add_empty' => false)),
       'unidades_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Unidades'), 'add_empty' => false)),
+      'codigo'      => new sfWidgetFormInputText(),
     ));
 
     $this->setValidators(array(
@@ -28,7 +29,12 @@ abstract class BaseCargosForm extends BaseFormDoctrine
       'valor'       => new sfValidatorNumber(),
       'tarifa_id'   => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Tarifas'))),
       'unidades_id' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Unidades'))),
+      'codigo'      => new sfValidatorPass(),
     ));
+
+    $this->validatorSchema->setPostValidator(
+      new sfValidatorDoctrineUnique(array('model' => 'Cargos', 'column' => array('codigo')))
+    );
 
     $this->widgetSchema->setNameFormat('cargos[%s]');
 

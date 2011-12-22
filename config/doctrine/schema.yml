@@ -11,6 +11,7 @@ Cargos:
     valor:        { type: float, notnull: true, scale: 4}
     tarifa_id:    { type: bigint(20), notnull: true }
     unidades_id:  { type: bigint(20), notnull: true }
+    codigo:       { type: varchar(5), notnull: true, unique: true }
   relations:
     Tarifas:      { onDelete: CASCADE, local: tarifa_id, foreign: id, foreignAlias: Tarifas }
     Unidades:     { onDelete: CASCADE, local: unidades_id, foreign: id, foreignAlias: Unidades }

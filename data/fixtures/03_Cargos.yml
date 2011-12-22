@@ -46,4 +46,238 @@ Cargos:
     valor:          8174.70
     Unidades:       uni4
     Tarifas:        tar2
+  # BT3
+  car10:
+    nombre:         Cargo fijo
+    valor:          1509.26
+    Unidades:       uni1
+    Tarifas:        tar3
+  car11:
+    nombre:         Cargo por uso del sistema troncal
+    valor:          1.424
+    Unidades:       uni5
+    Tarifas:        tar3
+  car12:
+    nombre:         Cargo por energia base
+    valor:          75.791
+    Unidades:       uni5
+    Tarifas:        tar3
+  car13:
+    nombre:         Cargo por demanda maxima en punta
+    valor:          10632.50
+    Unidades:       uni4
+    Tarifas:        tar3
+  car14:
+    nombre:         Cargo por demanda maxima parcialmente en punta
+    valor:          8174.70
+    Unidades:       uni4
+    Tarifas:        tar3
+  # BT4.1
+  car15:
+    nombre:         Cargo fijo
+    valor:          902.02
+    Unidades:       uni1
+    Tarifas:        tar4
+  car16:
+    nombre:         Cargo por uso del sistema troncal
+    valor:          1.424
+    Unidades:       uni5
+    Tarifas:        tar4
+  car17:
+    nombre:         Cargo por energia base
+    valor:          75.791
+    Unidades:       uni5
+    Tarifas:        tar4
+  car18:
+    nombre:         Cargo por demanda maxima contratada 
+    valor:          1792.80
+    Unidades:       uni4
+    Tarifas:        tar4
+  car19:
+    nombre:         Cargo por demanda maxima contratada en horas punta 
+    valor:          8839.70
+    Unidades:       uni4
+    Tarifas:        tar4
+  # BT4.2
+  car20:
+    nombre:         Cargo fijo
+    valor:          1509.26
+    Unidades:       uni1
+    Tarifas:        tar5
+  car21:
+    nombre:         Cargo por uso del sistema troncal
+    valor:          1.424
+    Unidades:       uni5
+    Tarifas:        tar5
+  car22:
+    nombre:         Cargo por energia base
+    valor:          75.791
+    Unidades:       uni5
+    Tarifas:        tar5
+  car23:
+    nombre:         Cargo por demanda maxima contratada 
+    valor:          1792.80
+    Unidades:       uni4
+    Tarifas:        tar5
+  car24:
+    nombre:         Cargo por demanda maxima leida en horas punta
+    valor:          8839.70
+    Unidades:       uni4
+    Tarifas:        tar5
+  # BT4.3
+  car25:
+    nombre:         Cargo fijo
+    valor:          902.02
+    Unidades:       uni1
+    Tarifas:        tar6
+  car26:
+    nombre:         Cargo por uso del sistema troncal
+    valor:          1.424
+    Unidades:       uni5
+    Tarifas:        tar6
+  car27:
+    nombre:         Cargo por energia base
+    valor:          71.279
+    Unidades:       uni5
+    Tarifas:        tar6
+  car28:
+    nombre:         Cargo por demanda maxima de potencia suministrada 
+    valor:          1792.80
+    Unidades:       uni4
+    Tarifas:        tar6
+  car29:
+    nombre:         Cargo por demanda maxima contratada en horas punta 
+    valor:          8839.70
+    Unidades:       uni4
+    Tarifas:        tar6
+  # AT2
+  car30:
+    nombre:         Cargo fijo
+    valor:          902.02
+    Unidades:       uni1
+    Tarifas:        tar7
+  car31:
+    nombre:         Cargo por uso del sistema troncal
+    valor:          1.424
+    Unidades:       uni5
+    Tarifas:        tar7
+  car32:
+    nombre:         Cargo por energia base
+    valor:          71.279
+    Unidades:       uni5
+    Tarifas:        tar7
+  car33:
+    nombre:         Cargo por potencia contratada presente en punta
+    valor:          7503.00
+    Unidades:       uni4
+    Tarifas:        tar7
+  car34:
+    nombre:         Cargo por potencia contratada parcialmente en punta
+    valor:          5927.40
+    Unidades:       uni4
+    Tarifas:        tar7
+  # AT3
+  car35:
+    nombre:         Cargo fijo
+    valor:          1509.26
+    Unidades:       uni1
+    Tarifas:        tar8
+  car36:
+    nombre:         Cargo por uso del sistema troncal
+    valor:          1.424
+    Unidades:       uni1
+    Tarifas:        tar8
+  car37:
+    nombre:         Cargo por energia base
+    valor:          71.279
+    Unidades:       uni5
+    Tarifas:        tar8
+  car38:
+    nombre:         Cargo por demanda maxima en punta
+    valor:          7503.30
+    Unidades:       uni4
+    Tarifas:        tar8
+  car39:
+    nombre:         Cargo por demanda maxima parcialmente en punta
+    valor:          5927.40
+    Unidades:       uni4
+    Tarifas:        tar8
+  # AT4.1
+  car40:
+    nombre:         Cargo fijo
+    valor:          902.02
+    Unidades:       uni1
+    Tarifas:        tar9
+  car41:
+    nombre:         Cargo por uso del sistema troncal
+    valor:          1.424
+    Unidades:       uni5
+    Tarifas:        tar9
+  car42:
+    nombre:         Cargo por energia base
+    valor:          71.279
+    Unidades:       uni5
+    Tarifas:        tar9
+  car43:
+    nombre:         Cargo por demanda maxima contratada 
+    valor:          855.3
+    Unidades:       uni4
+    Tarifas:        tar9
+  car44:
+    nombre:         Cargo por demanda maxima contratada en horas punta 
+    valor:          6647.70
+    Unidades:       uni4
+    Tarifas:        tar9
+  # AT4.2
+  car45:
+    nombre:         Cargo fijo
+    valor:          1509.26
+    Unidades:       uni1
+    Tarifas:        tar10
+  car46:
+    nombre:         Cargo por uso del sistema troncal
+    valor:          1.424
+    Unidades:       uni5
+    Tarifas:        tar10
+  car47:
+    nombre:         Cargo por energia base
+    valor:          71.279
+    Unidades:       uni5
+    Tarifas:        tar10
+  car48:
+    nombre:         Cargo por demanda maxima contratada 
+    valor:          855.3
+    Unidades:       uni4
+    Tarifas:        tar10
+  car49:
+    nombre:         Cargo por demanda maxima leida en horas punta 
+    valor:          6647.70
+    Unidades:       uni4
+    Tarifas:        tar10
+  # AT4.3
+  car50:
+    nombre:         Cargo fijo
+    valor:          1545.58
+    Unidades:       uni1
+    Tarifas:        tar11
+  car51:
+    nombre:         Cargo por uso del sistema troncal
+    valor:          1.424
+    Unidades:       uni5
+    Tarifas:        tar11
+  car52:
+    nombre:         Cargo por energia base
+    valor:          71.279
+    Unidades:       uni5
+    Tarifas:        tar11
+  car53:
+    nombre:         Cargo por demanda maxima de potencia suministrada 
+    valor:          855.3
+    Unidades:       uni4
+    Tarifas:        tar11
+  car54:
+    nombre:         Cargo por demanda maxima contratada en horas punta 
+    valor:          6647.70
+    Unidades:       uni4
+    Tarifas:        tar11
 

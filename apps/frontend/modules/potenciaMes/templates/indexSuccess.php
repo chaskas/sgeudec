@@ -2,7 +2,7 @@
 
   <div class="content-box-header">
 
-    <h3 style="cursor: s-resize; ">Consumo de Energ&iacute;a</h3>
+    <h3 style="cursor: s-resize; ">Potencia Demandada</h3>
 
     <div class="clear"></div>
 
@@ -14,7 +14,7 @@
       <div id="recintos"><?php include_partial('energia_recintos', array('recintos' => $recintos)) ?></div>
       <div id="ptomonits"></div>
       <div id="sensores"></div>
-      <div id="fecha"><?php include_partial('energia_fecha', array('fecha' => $fecha)) ?></div>
+      <div id="fecha"><?php include_partial('energia_anno', array('anno' => $anno)) ?></div>
       <div style="clear:both;padding-bottom:10px;"></div>
       <div id="grafico"></div>
        <span style="color:red;">(*) : Campos Obligatorios</span>

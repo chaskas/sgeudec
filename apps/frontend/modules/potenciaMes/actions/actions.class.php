@@ -8,7 +8,7 @@
  * @author     Your name here
  * @version    SVN: $Id: actions.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
-class energiaDia_1Actions extends sfActions {
+class potenciaMesActions extends sfActions {
 
   /**
    * Executes index action
@@ -18,11 +18,11 @@ class energiaDia_1Actions extends sfActions {
   public function executeIndex(sfWebRequest $request) {
     $this->recintos = new EnergiaRecintoForm();
     //$this->ptomonits = new EnergiaPtomonitForm();
-    $this->fecha = new EnergiaFechaForm();
+    $this->anno = new AnnoForm();
     $this->gdia = 0;
     $this->getUser()->setAttribute('recinto_id', '');
     $this->getUser()->setAttribute('ptomonit_id', '');
-    $this->getUser()->setAttribute('fecha', '');
+    $this->getUser()->setAttribute('anno', '');
   }
 
   public function executePtomonit(sfWebRequest $request) {
@@ -35,34 +35,36 @@ class energiaDia_1Actions extends sfActions {
     $this->sensores = new EnergiaSensorForm();
   }
 
-  public function executeFecha(sfWebRequest $request) {
-    
-//    $this->fecha = new EnergiaFechaForm();
+  public function executeAnno(sfWebRequest $request) {
+    $this->getUser()->setAttribute('anno', $request->getParameter('anno'));
   }
   
   public function executeGraficoPtomonit(sfWebRequest $request){
     $this->getUser()->setAttribute('ptomonit_id', $request->getParameter('ptomonit_id'));
   }
   public function executeGraficoFecha(sfWebRequest $request){
-      
-    $date = date_create_from_format('d/m/Y',$request->getParameter('fecha'));
-      
-    $this->getUser()->setAttribute('fecha',date_format($date, 'Y-m-d'));
+    
+    if($request->hasParameter('fechaIni')){
+        $dateIni = date_create_from_format('d/m/Y',$request->getParameter('fechaIni'));
+        $this->getUser()->setAttribute('fechaIni',date_format($dateIni, 'Y-m-d'));
+    }
+    if($request->hasParameter('fechaFin')){
+        $dateFin = date_create_from_format('d/m/Y',$request->getParameter('fechaFin'));
+        $this->getUser()->setAttribute('fechaFin',date_format($dateFin, 'Y-m-d'));
+    }
   }
-
-  public function executeLineChartData() {
+  
+  public function executeBarChartData() {
     
     $ptomonit_id = $this->getUser()->getAttribute('ptomonit_id');
-    $fecha = $this->getUser()->getAttribute('fecha');
+    $anno = $this->getUser()->getAttribute('anno');
 
-    $color = array('#D2691E','#DC143C','#556B2F','#00FFFF','#8A2BE2','#2F4F4F','#FFD700','#FF69B4','#98FB98','#BC8F8F');
+    $color = array('#DC143C','#556B2F','#00FFFF','#8A2BE2','#2F4F4F','#FFD700','#FF69B4','#D2691E','#98FB98','#BC8F8F');
     $Y_Max = 0;
 
-    //Create new stGraph object
     $g = new stGraph();
 
-    // Chart Title
-    $g->title('Energía por Día', '{font-size: 20px;}');
+    $g->title('Demandas Máximas Mensuales (kW)', '{font-size: 20px;}');
     $g->bg_colour = '#FFFFFF';
     $g->set_inner_background('#FFFFFF', '#FFFFFF', 90);
     $g->x_axis_colour('#8499A4', '#E4F5FC');
@@ -74,46 +76,56 @@ class energiaDia_1Actions extends sfActions {
             ->createQuery('a')
             ->where('ptomonit_id = ?',$ptomonit_id)
             ->execute();
-    
-    
+ 
     $i = 0;
+    $j = 1; //contador del sumador de energia por hora
+    
+    $tmp = 0;
     foreach ($this->sensores as $sensor) {
       
       $this->registros = Doctrine_Query::create()
               ->select("potencia,registrado_at")
               ->from("Registro")
-              ->where('registrado_at between ? and ?', array($fecha.' 00:00:00', $fecha.' 23:59:59'))
+              ->where('registrado_at between ? and ?', array($anno.'-01-01 00:00:00', $anno.'-12-31 23:59:59'))
               ->andWhere('sensor_id = ?', $sensor->getId())
               ->execute();
-
+      $horas = array();
       $chartData = array();
       foreach ($this->registros as $dato) {
-        $chartData[] = $dato->getPotencia()*(5/60);
+        
+        $tmp += $dato->getPotencia();
+        if($j==96*30){
+          $chartData[] = $tmp;
+          $tmp = 0;
+          $j = 0;
+          $horas[] = $dato->getFecha();
+        }
+        $j++;
       }
       
       $Y_Max = max($chartData);
+      $maxT[] = $Y_Max;
+      
+      $tmp = 0;
+      $j = 1;
       
       $g->set_data($chartData);
       $g->line(2, $color[$i], $sensor->getIdentificador(), 10);
-
-      $horas = array();
-      foreach ($this->registros as $dato) {
-        $horas[] = $dato->getHora();
-      }
+      
       $i++;
     }
-
     
     $g->set_x_labels($horas);
 
-    //to set the format of labels on x-axis e.g. font, color, orientation, step
-    $g->set_x_label_style(10, '#778899', 2, 12);
+    $g->set_x_label_style(10, '#778899', 2, 1);
     
-    $g->set_y_max($Y_Max+$Y_Max/2);
+    $g->set_y_max(max($maxT)+max($maxT)/2);
 
-    $g->y_label_steps(15);
+    $g->y_label_steps(10);
+    
+    $g->set_y_legend( 'kW', 12, '0x736AFF' );
+    $g->set_x_legend( 'Dias', 12, '0x736AFF' );
 
-    // display the data
     echo $g->render();
 
     return sfView::NONE;

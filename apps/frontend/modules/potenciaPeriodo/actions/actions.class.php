@@ -8,7 +8,7 @@
  * @author     Your name here
  * @version    SVN: $Id: actions.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
-class energiaPeriodoActions extends sfActions {
+class potenciaPeriodoActions extends sfActions {
 
   /**
    * Executes index action
@@ -67,7 +67,7 @@ class energiaPeriodoActions extends sfActions {
 
     $g = new stGraph();
 
-    $g->title('Consumo de Energía del Periodo Seleccionado (kWh)', '{font-size: 20px;}');
+    $g->title('Demandas Máximas del Periodo Seleccionado (kW)', '{font-size: 20px;}');
     $g->bg_colour = '#FFFFFF';
     $g->set_inner_background('#FFFFFF', '#FFFFFF', 90);
     $g->x_axis_colour('#8499A4', '#E4F5FC');
@@ -86,8 +86,8 @@ class energiaPeriodoActions extends sfActions {
     $tmp = 0;
     foreach ($this->sensores as $sensor) {
       
-      $bar_1 = new bar( 90, $color[$i]);
-      $bar_1->key( $sensor->getIdentificador(), 12 );
+//      $bar_1 = new bar( 90, $color[$i]);
+//      $bar_1->key( $sensor->getIdentificador(), 12 );
       
       $this->registros = Doctrine_Query::create()
               ->select("potencia,registrado_at")
@@ -96,21 +96,29 @@ class energiaPeriodoActions extends sfActions {
               ->andWhere('sensor_id = ?', $sensor->getId())
               ->execute();
       $horas = array();
+      $chartData = array();
       foreach ($this->registros as $dato) {
-        $tmp += $dato->getPotencia()*(15/60);
+        
+        $tmp += $dato->getPotencia();
         if($j==96){
-          $bar_1->data[] = $tmp;
+          $chartData[] = $tmp;
           $tmp = 0;
           $j = 0;
           $horas[] = $dato->getFecha();
         }
         $j++;
       }
+      
+      $Y_Max = max($chartData);
+      $maxT[] = $Y_Max;
+      
       $tmp = 0;
       $j = 1;
-      $Y_Max = max($bar_1->data);
-      $maxT[] = $Y_Max;
-      $g->data_sets[] = $bar_1;
+      
+      $g->set_data($chartData);
+      $g->line(2, $color[$i], $sensor->getIdentificador(), 10);
+      
+      //$g->data_sets[] = $bar_1;
       $i++;
     }
     
@@ -122,7 +130,7 @@ class energiaPeriodoActions extends sfActions {
 
     $g->y_label_steps(10);
     
-    $g->set_y_legend( 'kWh Consumido', 12, '0x736AFF' );
+    $g->set_y_legend( 'kW', 12, '0x736AFF' );
     $g->set_x_legend( 'Dias', 12, '0x736AFF' );
 
     echo $g->render();

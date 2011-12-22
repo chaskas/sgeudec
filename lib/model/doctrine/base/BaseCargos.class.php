@@ -9,6 +9,7 @@
  * @property float $valor
  * @property bigint $tarifa_id
  * @property bigint $unidades_id
+ * @property varchar $codigo
  * @property Tarifas $Tarifas
  * @property Unidades $Unidades
  * 
@@ -16,12 +17,14 @@
  * @method float    getValor()       Returns the current record's "valor" value
  * @method bigint   getTarifaId()    Returns the current record's "tarifa_id" value
  * @method bigint   getUnidadesId()  Returns the current record's "unidades_id" value
+ * @method varchar  getCodigo()      Returns the current record's "codigo" value
  * @method Tarifas  getTarifas()     Returns the current record's "Tarifas" value
  * @method Unidades getUnidades()    Returns the current record's "Unidades" value
  * @method Cargos   setNombre()      Sets the current record's "nombre" value
  * @method Cargos   setValor()       Sets the current record's "valor" value
  * @method Cargos   setTarifaId()    Sets the current record's "tarifa_id" value
  * @method Cargos   setUnidadesId()  Sets the current record's "unidades_id" value
+ * @method Cargos   setCodigo()      Sets the current record's "codigo" value
  * @method Cargos   setTarifas()     Sets the current record's "Tarifas" value
  * @method Cargos   setUnidades()    Sets the current record's "Unidades" value
  * 
@@ -53,6 +56,12 @@ abstract class BaseCargos extends sfDoctrineRecord
              'type' => 'bigint',
              'notnull' => true,
              'length' => 20,
+             ));
+        $this->hasColumn('codigo', 'varchar', 5, array(
+             'type' => 'varchar',
+             'notnull' => true,
+             'unique' => true,
+             'length' => 5,
              ));
     }
 

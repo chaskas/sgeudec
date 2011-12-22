@@ -1,0 +1,1 @@
+<?php stOfc::createChart(700, 400, 'potenciaDia/LineChartData', false); ?>

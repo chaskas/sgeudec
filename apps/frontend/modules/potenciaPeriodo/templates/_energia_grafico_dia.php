@@ -1,0 +1,1 @@
+<?php stOfc::createChart(700, 400, 'potenciaPeriodo/LineChartData', false); ?>

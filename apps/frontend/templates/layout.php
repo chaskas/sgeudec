@@ -33,21 +33,32 @@
 
             <li>
               <a href="#" class="nav-top-item <?php if($sf_context->getModuleName()=='energiaDia' || $sf_context->getModuleName()=='energiaPeriodo' || $sf_context->getModuleName()=='energiaMes') echo "current"; ?>"> <!-- Add the class "no-submenu" to menu items with no sub menu -->
-		Gr&aacute;ficos
+		Gr&aacute;ficos Energia
               </a>
               <ul>
                 <li><a <?php if($sf_context->getActionName()=='index' && $sf_context->getModuleName()=='energiaDia') echo "class='current'"; ?> href="<?php echo url_for('energiaDia/index'); ?>">Diario</a></li>
                 <li><a <?php if($sf_context->getActionName()=='index' && $sf_context->getModuleName()=='energiaPeriodo') echo "class='current'"; ?> href="<?php echo url_for('energiaPeriodo/index'); ?>">Periodo</a></li>
-                <li><a href="#">Mensual</a></li>
+<!--                <li><a href="#">Mensual</a></li>-->
+                
               </ul>
             </li>
             <li>
-              <a href="<?php echo url_for('tarifa/index'); ?>" class="nav-top-item <?php if($sf_context->getModuleName()=='a') echo "current"; ?>"> <!-- Add the class "no-submenu" to menu items with no sub menu -->
-		Hist&oacute;ricos
+              <a href="#" class="nav-top-item <?php if($sf_context->getModuleName()=='potenciaDia' || $sf_context->getModuleName()=='potenciaPeriodo' || $sf_context->getModuleName()=='potenciaMes') echo "current"; ?>">
+		Gr&aacute;ficos Potencia
               </a>
               <ul>
-                <li><a <?php if($sf_context->getActionName()=='index' && $sf_context->getModuleName()=='tarifa') echo "class='current'"; ?> href="<?php echo url_for('tarifa/index'); ?>">Hist&oacute;ricos</a></li>
-                <li><a <?php if($sf_context->getActionName()=='new' && $sf_context->getModuleName()=='tarifa') echo "class='current'"; ?> href="<?php echo url_for('tarifa/new'); ?>">Crear nueva tarifa</a></li>
+                <li><a <?php if($sf_context->getActionName()=='index' && $sf_context->getModuleName()=='potenciaDia') echo "class='current'"; ?> href="<?php echo url_for('potenciaDia/index'); ?>">Diario</a></li>
+                <li><a <?php if($sf_context->getActionName()=='index' && $sf_context->getModuleName()=='potenciaPeriodo') echo "class='current'"; ?> href="<?php echo url_for('potenciaPeriodo/index'); ?>">Periodo</a></li>
+<!--                <li><a <?php //if($sf_context->getActionName()=='index' && $sf_context->getModuleName()=='potenciaMes') echo "class='current'"; ?> href="<?php echo url_for('potenciaMes/index'); ?>">Mensual</a></li>-->
+                
+              </ul>
+            </li>
+            <li>
+              <a href="<?php echo url_for('informes/index'); ?>" class="nav-top-item <?php if($sf_context->getModuleName()=='informes') echo "current"; ?>">
+		Informes de Facturaci&oacute;n
+              </a>
+              <ul>
+                <li><a <?php if($sf_context->getModuleName()=='informes') echo "class='current'"; ?> href="<?php echo url_for('informes/index'); ?>">Facturaci&oacute;n Estimada</a></li>
               </ul>
             </li>
             <li>

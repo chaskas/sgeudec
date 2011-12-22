@@ -2,7 +2,7 @@
 
   <div class="content-box-header">
 
-    <h3 style="cursor: s-resize; ">Evaluaci&oacute;n Energ&eacute;tica</h3>
+    <h3 style="cursor: s-resize; ">Potencia Demandada</h3>
 
     <div class="clear"></div>
 

@@ -1,0 +1,1 @@
+<?php stOfc::createChart('100%', 350, 'potenciaMes/BarChartData', false); ?>

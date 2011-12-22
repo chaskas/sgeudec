@@ -17,6 +17,7 @@ abstract class BaseCargosFormFilter extends BaseFormFilterDoctrine
       'valor'       => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'tarifa_id'   => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Tarifas'), 'add_empty' => true)),
       'unidades_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Unidades'), 'add_empty' => true)),
+      'codigo'      => new sfWidgetFormFilterInput(array('with_empty' => false)),
     ));
 
     $this->setValidators(array(
@@ -24,6 +25,7 @@ abstract class BaseCargosFormFilter extends BaseFormFilterDoctrine
       'valor'       => new sfValidatorSchemaFilter('text', new sfValidatorNumber(array('required' => false))),
       'tarifa_id'   => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Tarifas'), 'column' => 'id')),
       'unidades_id' => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Unidades'), 'column' => 'id')),
+      'codigo'      => new sfValidatorPass(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('cargos_filters[%s]');
@@ -48,6 +50,7 @@ abstract class BaseCargosFormFilter extends BaseFormFilterDoctrine
       'valor'       => 'Number',
       'tarifa_id'   => 'ForeignKey',
       'unidades_id' => 'ForeignKey',
+      'codigo'      => 'Text',
     );
   }
 }

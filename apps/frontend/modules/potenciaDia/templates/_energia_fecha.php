@@ -13,7 +13,7 @@
 
 <form method="post" <?php $fecha->isMultipart() and print 'enctype="multipart/form-data" ' ?>>
     <label style="float:left;">Fecha <span style="color:red;font-weight: normal;">(*)</span><br/>
-        <?php echo $fecha['fecha']->Render(array('onchange' => jq_remote_function(array('update' => 'grafico', 'url' => 'energiaDia/graficoFecha', 'with' => " 'fecha=' +this.value")), 'class' => 'text-input','style'=>'width:80px')); ?>
+        <?php echo $fecha['fecha']->Render(array('onchange' => jq_remote_function(array('update' => 'grafico', 'url' => 'potenciaDia/graficoFecha', 'with' => " 'fecha=' +this.value")), 'class' => 'text-input','style'=>'width:80px')); ?>
     </label>
     <?php $fecha->RenderHiddenFields(); ?>
 </form>

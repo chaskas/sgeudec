@@ -16,4 +16,12 @@ class TarifasTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('Tarifas');
     }
+    
+    public function getTarifas() {
+    return Doctrine_Query::create()
+                    ->select('*')
+                    ->from('Tarifas')
+                    ->OrderBy('nombre asc')
+                    ->execute();
+  }
 }
